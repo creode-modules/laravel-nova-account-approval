@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace Creode\LaravelNovaAccountApproval;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use VendorName\Skeleton\Commands\SkeletonCommand;
+use Creode\LaravelNovaAccountApproval\Commands\LaravelNovaAccountApprovalCommand;
 
-class SkeletonServiceProvider extends PackageServiceProvider
+class LaravelNovaAccountApprovalServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
@@ -16,10 +16,10 @@ class SkeletonServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('skeleton')
+            ->name('laravel-nova-account-approval')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_skeleton_table')
-            ->hasCommand(SkeletonCommand::class);
+            ->hasMigration('create_laravel-nova-account-approval_table')
+            ->hasCommand(LaravelNovaAccountApprovalCommand::class);
     }
 }

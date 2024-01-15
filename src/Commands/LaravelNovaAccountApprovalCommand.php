@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Creode\LaravelNovaAccountApproval\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class LaravelNovaAccountApprovalCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-nova-account-approval';
 
     public $description = 'My command';
 
