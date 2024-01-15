@@ -17,9 +17,6 @@ class LaravelNovaAccountApprovalServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('laravel-nova-account-approval')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_laravel-nova-account-approval_table')
-            ->hasCommand(LaravelNovaAccountApprovalCommand::class);
+            ->hasConfigFile();
     }
 }
