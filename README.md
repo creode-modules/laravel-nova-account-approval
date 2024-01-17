@@ -15,21 +15,60 @@ You can install the package via composer:
 composer require creode/laravel-nova-account-approval
 ```
 
-You can publish the config file with:
+## Usage
+This package currently just exposes some actions that can be used in Nova resources to activate and deactivate users.
 
-```bash
-php artisan vendor:publish --tag="laravel-nova-account-approval-config"
-```
+This functionality is tied directly to the `laravel-account-approval` package, using it as a dependency of this one.
 
-This is the contents of the published config file:
+### Setting up the actions
+To use the actions, you need to add them to your Nova resource. For example, if you have a User resource, you can add the actions like so:
 
 ```php
-return [
-];
+/**
+ * Get the actions available for the resource.
+ *
+ * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+ * @return array
+ */
+public function actions(NovaRequest $request)
+{
+    return [
+        (new \Creode\LaravelNovaAccountApproval\Actions\ApproveAccount)
+            ->confirmText('Are you sure you want to approve this account?')
+            ->confirmButtonText('Approve')
+        ->cancelButtonText("Don't Approve"),
+        (new \Creode\LaravelNovaAccountApproval\Actions\DeactivateAccount)
+            ->confirmText('Are you sure you want to deactivate this account?')
+            ->confirmButtonText('Deactivate')
+            ->cancelButtonText("Don't Deactivate"),
+    ];
+}
 ```
 
-## Usage
+Actions are configured to be both inline and in bulk so they can be used to easily approve/deactivate multiple users at once from the main screen.
 
+It may also be useful to display the status of the user in the resource index. This can be done by adding the following to the `fields` method of the resource:
+
+```php
+/**
+ * Get the fields displayed by the resource.
+ *
+ * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+ * @return array
+ */
+public function fields(NovaRequest $request)
+{
+    return [
+        // Other fields...
+
+        Boolean::make('Activated')
+            ->sortable()
+            ->rules('required', 'boolean'),
+
+        // More other fields...
+    ];
+}
+```
 
 ## Testing
 
