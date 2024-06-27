@@ -2,6 +2,8 @@
 
 namespace Creode\LaravelNovaAccountApproval\Actions;
 
+use Creode\LaravelNovaAccountApproval\Events\AccountApproved;
+use Creode\LaravelNovaAccountApproval\Events\AccountDenied;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Collection;
@@ -32,6 +34,8 @@ abstract class AccountApproval extends Action
         foreach ($models as $model) {
             $model->activated = $this->activationStatus;
             $model->save();
+            event(new AccountApproved($model));
+            event(new AccountDenied($model));
         }
     }
 
