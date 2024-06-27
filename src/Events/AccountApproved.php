@@ -2,6 +2,7 @@
 
 namespace Creode\LaravelNovaAccountApproval\Events;
 
+use App\Models\User;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
@@ -12,7 +13,7 @@ class AccountApproved
     /**
      * Create a new event instance.
      */
-    public function __construct(public array $data)
+    public function __construct(public User $data)
     {
     }
 
