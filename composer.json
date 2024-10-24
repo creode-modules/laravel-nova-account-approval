@@ -24,13 +24,13 @@
     "require": {
         "php": "^8.1",
         "creode/laravel-account-approval": "^1.1",
-        "illuminate/contracts": "^10.0",
+        "illuminate/contracts": "^10.0 | ^11.0",
         "laravel/nova": "^4.32",
         "spatie/laravel-package-tools": "^1.14.0"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
-        "nunomaduro/collision": "^7.8",
+        "nunomaduro/collision": "^7.8 | ^8.1",
         "orchestra/testbench": "^8.8",
         "pestphp/pest": "^2.20",
         "pestphp/pest-plugin-arch": "^2.0",
