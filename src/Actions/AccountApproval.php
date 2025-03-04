@@ -32,9 +32,20 @@ abstract class AccountApproval extends Action
     public function handle(ActionFields $fields, Collection $models)
     {
         foreach ($models as $model) {
+            // Check if the models activation status has changed.
+            if ($model->activated == $this->activationStatus) {
+                continue;
+            }
+
+            // Set Activation Status.
             $model->activated = $this->activationStatus;
             $model->save();
-            event(new AccountApproved($model));
+
+            // If activation status is approved.
+            if ($this->activationStatus) {
+                event(new AccountApproved($model));
+            }
+
             event(new AccountDenied($model));
         }
     }
