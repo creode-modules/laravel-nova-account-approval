@@ -44,6 +44,7 @@ abstract class AccountApproval extends Action
             // If activation status is approved.
             if ($this->activationStatus) {
                 event(new AccountApproved($model));
+                return;
             }
 
             event(new AccountDenied($model));
